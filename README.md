@@ -1,4 +1,4 @@
-# mega-drive-everdrive-usb-link-poc
+# Mega Drive Everdrive USB Link POC
 Proving that you can send bits over USB to the Everdrive cart
 
 ## References

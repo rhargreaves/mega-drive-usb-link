@@ -2,3 +2,4 @@
 .vscode/
 *.o
 project.code-workspace
+tests/cmocka/

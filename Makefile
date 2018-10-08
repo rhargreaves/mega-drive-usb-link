@@ -163,6 +163,10 @@ bin/%.bin: %.elf
 boot/rom_head.bin: boot/rom_head.o
 	$(LD) $(LINKFLAGS) --oformat binary -o $@ $<
 
+test:
+	$(MAKE) -C tests
+.PHONY: test
+
 clean:
 	$(RM) $(RESOURCES)
 	$(RM) *.o *.bin *.elf *.map *.iso

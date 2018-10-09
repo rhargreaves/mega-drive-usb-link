@@ -2,12 +2,12 @@
 #include <stddef.h>
 #include <setjmp.h>
 #include <cmocka.h>
-#include <main.c>
+#include <foo.h>
 
 /* A test case that does nothing and succeeds. */
 static void null_test_success(void **state)
 {
-    foo();
+    add(2, 2);
     (void)state; /* unused */
 }
 

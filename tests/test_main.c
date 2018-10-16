@@ -7,8 +7,10 @@
 /* A test case that does nothing and succeeds. */
 static void null_test_success(void **state)
 {
-    add(2, 2);
     (void)state; /* unused */
+    
+    int result = add(2, 2);
+    assert_int_equal(4, result);
 }
 
 int main(void)

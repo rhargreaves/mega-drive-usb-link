@@ -24,7 +24,7 @@ Unit tests built with `cmocka` and are compiled to x86. Mega Drive interfaces ar
 Docker:
 
 ```sh
-./docker-make-tests
+./docker-make-tests test
 ```
 
 Linux:

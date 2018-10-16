@@ -3,5 +3,10 @@ jobs:
  build:
    machine: true
    steps:
-     - test: ./docker-make-tests test
-     - build: ./docker-make
+     - checkout
+     - run:
+         name: Test
+         command: ./docker-make-tests test
+     - run:
+         name: Build
+         command: ./docker-make

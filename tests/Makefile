@@ -1,7 +1,10 @@
 vpath %.c ../src
 
 CC=gcc
+GENDEV?=/opt/toolchains/gen
 
+INCLUDE_DIRS+=-I$(GENDEV)/m68k-elf/m68k-elf/include
+INCLUDE_DIRS+=-I$(GENDEV)/m68k-elf/include
 INCLUDE_DIRS+=-I../src
 INCLUDE_DIRS+=-I../include
 INCLUDE_DIRS+=-I$(CMOCKA_DIR)/include
@@ -9,7 +12,7 @@ INCLUDE_DIRS+=-I$(CMOCKA_DIR)/include
 CFLAGS=$(INCLUDE_DIRS)
 
 MOCKS=mock_test # list of function signature to mock
-LDFLAGS=-l cmocka -L$(CMOCKA_DIR)/build/src -Wl,-rpath=$(CMOCKA_DIR)/build/src
+LDFLAGS=-nostdlib -l cmocka -L$(CMOCKA_DIR)/build/src -Wl,-rpath=$(CMOCKA_DIR)/build/src
 LDFLAGS+=$(foreach MOCK,$(MOCKS),-Wl,--wrap=$(MOCK))
 
 TARGET=test_main

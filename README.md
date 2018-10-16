@@ -1,4 +1,4 @@
-# Mega Drive USB Link
+# Mega Drive USB Link [![CircleCI](https://circleci.com/gh/rhargreaves/mega-drive-usb-link.svg?style=svg)](https://circleci.com/gh/rhargreaves/mega-drive-usb-link)
 Proving that you can send bits over USB to the Everdrive cart
 
 ## Getting Started

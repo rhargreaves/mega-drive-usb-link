@@ -30,6 +30,10 @@ workflows:
   build_and_release:
     jobs:
       - build
+      - hold:
+          type: approval
+          requires:
+            - build   
       - publish-github-release:
           requires:
-            - build
+            - hold

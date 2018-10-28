@@ -7,6 +7,6 @@ void reader_tick(void)
     u16 result = (u16)add(2, 2);
 
     char str[2];
-    uintToStr(result, str, 1);
+    sprintf(str, "%d", result);
     VDP_drawText(str, 0, 0);
 }

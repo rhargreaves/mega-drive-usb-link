@@ -6,7 +6,7 @@ jobs:
      - checkout
      - run:
          name: Test
-         command: ./docker-make-tests test
+         command: ./docker-make test
      - run:
          name: Build
-         command: ./docker-make
+         command: ./docker-make all

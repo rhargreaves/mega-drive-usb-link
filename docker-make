@@ -1,2 +1,4 @@
-#!/bin/sh
-docker run -w /app -v $(pwd):/app -it rhargreaves/gendev make
+#!/bin/bash -e
+IMAGE_NAME=mega-drive-usb-link
+docker build -t $IMAGE_NAME .
+docker run --rm -v $(pwd):/app -w /app -i -t $IMAGE_NAME make "$@"

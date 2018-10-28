@@ -4,8 +4,7 @@
 #include <cmocka.h>
 #include <foo.h>
 
-/* A test case that does nothing and succeeds. */
-static void null_test_success(void **state)
+static void adds_two_integers(void **state)
 {
     (void)state; /* unused */
     
@@ -16,7 +15,7 @@ static void null_test_success(void **state)
 int main(void)
 {
     const struct CMUnitTest tests[] = {
-        cmocka_unit_test(null_test_success),
+        cmocka_unit_test(adds_two_integers),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);

@@ -1,10 +1,9 @@
 vpath %.c ../src
 
 CC=gcc
-GENDEV?=/opt/toolchains/gen
+SGDK?=/opt/gendev/sgdk
 
-INCLUDE_DIRS+=-I$(GENDEV)/m68k-elf/m68k-elf/include
-INCLUDE_DIRS+=-I$(GENDEV)/m68k-elf/include
+INCLUDE_DIRS+=-I$(SGDK)/inc
 INCLUDE_DIRS+=-I../src
 INCLUDE_DIRS+=-I../include
 INCLUDE_DIRS+=-I$(CMOCKA_DIR)/include

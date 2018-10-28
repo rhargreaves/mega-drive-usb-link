@@ -3,3 +3,4 @@
 *.o
 project.code-workspace
 tests/cmocka/
+tests/test_main

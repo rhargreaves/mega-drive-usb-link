@@ -9,10 +9,10 @@ INCLUDE_DIRS+=-I../src
 INCLUDE_DIRS+=-I../include
 INCLUDE_DIRS+=-I$(CMOCKA_DIR)/include
 
-CFLAGS=$(INCLUDE_DIRS) -nostdlib
+CFLAGS=$(INCLUDE_DIRS)
 
 MOCKS=mock_test # list of function signature to mock
-LDFLAGS=-nostdlib -lc -l cmocka -L$(CMOCKA_DIR)/build/src -Wl,-rpath=$(CMOCKA_DIR)/build/src
+LDFLAGS=-l cmocka -L$(CMOCKA_DIR)/build/src -Wl,-rpath=$(CMOCKA_DIR)/build/src
 LDFLAGS+=$(foreach MOCK,$(MOCKS),-Wl,--wrap=$(MOCK))
 
 TARGET=test_main

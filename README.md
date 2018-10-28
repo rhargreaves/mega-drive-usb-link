@@ -8,13 +8,13 @@ Proving that you can send bits over USB to the Everdrive cart
 Docker:
 
 ```sh
-./docker-make
+./docker-make all
 ```
 
 Linux (requires `cmake`):
 
 ```sh
-make
+make all
 ```
 
 ### Running Unit Tests
@@ -24,14 +24,13 @@ Unit tests built with `cmocka` and are compiled to x86. Mega Drive interfaces ar
 Docker:
 
 ```sh
-./docker-make-tests test
+./docker-make test
 ```
 
 Linux:
 
 ```sh
-cd tests
-make
+make test
 ```
 
 ## References

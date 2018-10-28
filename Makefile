@@ -1,8 +1,8 @@
-GENDEV?=/opt/toolchains/gen/
-GCC_VER?=4.8.2
+GENDEV?=/opt/gendev
+GCC_VER?=6.3.0
 MAKE?=make
 LIB?=lib
-GENGCC_BIN=$(GENDEV)/m68k-elf/bin
+GENGCC_BIN=$(GENDEV)/bin
 GENBIN=$(GENDEV)/bin
 CC = $(GENGCC_BIN)/m68k-elf-gcc
 AS = $(GENGCC_BIN)/m68k-elf-as
@@ -19,27 +19,17 @@ SIZEBND = $(GENBIN)/sizebnd
 ASMZ80 = $(GENBIN)/zasm
 RM = rm -f
 NM = nm
-NM2WCH = nm2wch
-MKISOFS = mkisofs
+
 OPTION = -std=c11 -fno-builtin
-INCS = -I. -I$(GENDEV)/m68k-elf/include -I$(GENDEV)/m68k-elf/m68k-elf/include -Isrc -Ires
+INCS = -I. -I$(GENDEV)/sgdk/inc -I$(GENDEV)/m86k-elf/include -I$(GENDEV)/sgdk/res -Isrc -Ires
 CCFLAGS = $(OPTION) -m68000 -Wall -O2 -c -fomit-frame-pointer
 HWCCFLAGS = $(OPTION) -m68000 -Wall -O1 -c -fomit-frame-pointer
 Z80FLAGS = -vb2
 ASFLAGS = -m68000 --register-prefix-optional
-LIBS =  -L$(GENDEV)/m68k-elf/lib -L$(GENDEV)/m68k-elf/lib/gcc/m68k-elf/* -L$(GENDEV)/m68k-elf/m68k-elf/lib -lmd -lnosys
-LINKFLAGS = -T $(GENDEV)/ldscripts/sgdk.ld -nostdlib
-ARCHIVES = $(GENDEV)/m68k-elf/lib/libmd.a
-
-# Are we AMD64?
-#LBITS := $(shell getconf LONG_BIT)
-#ifeq ($(LBITS), 64)
-#ARCHIVES += $(GENDEV)/m68k-elf/lib64/gcc/m68k-elf/$(GCC_VER)/libgcc.a
-#else
-#ARCHIVES += $(GENDEV)/m68k-elf/lib/gcc/m68k-elf/$(GCC_VER)/libgcc.a
-#endif
-
-ARCHIVES += $(GENDEV)/m68k-elf/$(LIB)/gcc/m68k-elf/$(GCC_VER)/libgcc.a
+LIBS =  -L$(GENDEV)/m68k-elf/lib -L$(GENDEV)/lib/gcc/m68k-elf/$(GCC_VER)/* -L$(GENDEV)/sgdk/lib -lmd -lnosys
+LINKFLAGS = -T $(GENDEV)/sgdk/md.ld -nostdlib
+ARCHIVES = $(GENDEV)/sgdk/$(LIB)/libmd.a
+ARCHIVES += $(GENDEV)/$(LIB)/gcc/m68k-elf/$(GCC_VER)/libgcc.a
 
 RESOURCES=
 BOOT_RESOURCES=
@@ -47,34 +37,8 @@ BOOT_RESOURCES=
 BOOTSS=$(wildcard boot/*.s)
 BOOTSS+=$(wildcard src/boot/*.s)
 BOOT_RESOURCES+=$(BOOTSS:.s=.o)
-
-#BMPS=$(wildcard res/*.bmp)
-#VGMS=$(wildcard res/*.vgm)
-#RAWS=$(wildcard res/*.raw)
-#PCMS=$(wildcard res/*.pcm)
-#MVSS=$(wildcard res/*.mvs)
-#TFDS=$(wildcard res/*.tfd)
-#WAVS=$(wildcard res/*.wav)
 RESS=$(wildcard res/*.res)
-#WAVPCMS=$(wildcard res/*.wavpcm)
-#BMPS+=$(wildcard *.bmp)
-#VGMS+=$(wildcard *.vgm)
-#RAWS+=$(wildcard *.raw)
-#PCMS+=$(wildcard *.pcm)
-#MVSS+=$(wildcard *.mvs)
-#TFDS+=$(wildcard *.tfd)
-#WAVS+=$(wildcard *.wav)
 RESS+=$(wildcard *.res)
-#WAVPCMS+=$(wildcard *.wavpcm)
-
-#RESOURCES+=$(BMPS:.bmp=.o)
-#RESOURCES+=$(VGMS:.vgm=.o)
-#RESOURCES+=$(RAWS:.raw=.o)
-#RESOURCES+=$(PCMS:.pcm=.o)
-#RESOURCES+=$(MVSS:.mvs=.o)
-#RESOURCES+=$(TFDS:.tfd=.o)
-#RESOURCES+=$(WAVS:.wav=.o)
-#RESOURCES+=$(WAVPCMS:.wavpcm=.o)
 RESOURCES+=$(RESS:.res=.o)
 
 CS=$(wildcard src/*.c)
@@ -126,12 +90,6 @@ bin/%.bin: %.elf
 
 %.pcm: %.wavpcm
 	$(WAVTORAW) $< $@ 22050
-
-#%.tfc: %.tfd
-#	$(TFMCOM) $<
-
-#%.o80: %.s80
-#	$(ASMZ80) $(FLAGSZ80) $< $@ out.lst
 
 %.s: %.tfd
 	$(BINTOS) -align 32768 $<

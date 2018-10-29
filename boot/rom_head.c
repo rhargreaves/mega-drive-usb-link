@@ -22,7 +22,7 @@ const struct
     char notes[40];                 /* Memo (40) */
     char region[16];                /* Country Support (16) */
 } rom_header = {
-    "SEGA MEGA DRIVE ",
+    "SEGA SSF        ",
     "(C)FLEMTEAM 2013",
     "SAMPLE PROGRAM                                  ",
     "SAMPLE PROGRAM                                  ",

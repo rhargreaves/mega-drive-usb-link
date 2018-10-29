@@ -2,20 +2,26 @@
 #include <genesis.h>
 #include <ssf.h>
 
-static u16 count;
+u16 _count = 0;
 
 void reader_tick(void) 
 {
-    count = 0;
     u8 data;
-    while(ssf_usb_rd_ready())
-    {
-        data = ssf_usb_read();
-        count++;
+    for(;;) {
+        if(ssf_usb_rd_ready())
+        {
+            data = ssf_usb_read();
+            _count++;
+        }
     }
 }
 
 u16 reader_count(void)
 {
-    return count;
+    return _count;
+}
+
+void reader_resetCount(void)
+{
+    _count = 0;
 }

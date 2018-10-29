@@ -1,12 +1,21 @@
 #include <reader.h>
 #include <genesis.h>
-#include <foo.h>
+#include <ssf.h>
+
+static u16 count;
 
 void reader_tick(void) 
 {
-    u16 result = (u16)add(2, 2);
+    count = 0;
+    u8 data;
+    while(ssf_usb_rd_ready())
+    {
+        data = ssf_usb_read();
+        count++;
+    }
+}
 
-    char str[2];
-    sprintf(str, "%d", result);
-    VDP_drawText(str, 0, 0);
+u16 reader_count(void)
+{
+    return count;
 }

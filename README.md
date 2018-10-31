@@ -19,11 +19,11 @@ static u16 default_mode = MODE_PING;
 
 `PCM` allows you to stream PCM audio through the USB serial interface direct to the DAC of the YM2612 FM chip. For example:
 
-```
-$ ffmpeg -re -y -i input.mp3 -ar 15200 -acodec pcm_u8 -f u8 -ac 1 - > /dev/cu.usbserial-A105J2JO
+```sh
+$ ffmpeg -re -y -i input.mp3 -ar 26000 -acodec pcm_u8 -f u8 -ac 1 - > /dev/cu.usbserial-A105J2JO
 ```
 
-The `-re` argument ensures that the PCM audio is sent to the Mega Drive at playback rate (there's no software buffering or rate control). A sample rate of 15200 Hz seems to work fine with the program as-is.
+The `-re` argument ensures that the PCM audio is sent to the Mega Drive at playback rate (there's no software buffering or rate control). A sample rate of 26000 Hz seems to work fine with the program as-is.
 
 ### Results
 

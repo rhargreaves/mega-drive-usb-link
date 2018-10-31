@@ -1,5 +1,5 @@
-# Mega Drive USB Link [![CircleCI](https://circleci.com/gh/rhargreaves/mega-drive-usb-link.svg?style=svg)](https://circleci.com/gh/rhargreaves/mega-drive-usb-link)
-Proving that you can send bits over USB to the Everdrive cart
+# Sega Mega Drive USB Link [![CircleCI](https://circleci.com/gh/rhargreaves/mega-drive-usb-link.svg?style=svg)](https://circleci.com/gh/rhargreaves/mega-drive-usb-link)
+Fun and profit sending bits over USB to the Mega Everdrive X7 cart
 
 ## Getting Started
 

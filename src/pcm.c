@@ -15,6 +15,7 @@ void pcm_stream(void)
     YM2612_writeReg(0, 0x98, 0);
     YM2612_writeReg(0, 0x9C, 0);
     YM2612_enableDAC();
+    SYS_disableInts();
     for(;;) 
     {
         while(!ssf_usb_rd_ready()){ }

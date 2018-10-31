@@ -4,7 +4,7 @@
 
 u16 _count = 0;
 
-void reader_tick(void) 
+void reader_read(void) 
 {
     u8 data;
     for(;;) {

@@ -2,6 +2,7 @@
 #include <reader.h>
 #include <ssf.h>
 #include <ping.h>
+#include <pcm.h>
 
 static void vsync(void);
 static void printRate(u16 byteCount);
@@ -12,8 +13,9 @@ static u16 framesPerSecond;
 
 #define MODE_PING 0
 #define MODE_RATE_TEST 1
+#define MODE_PCM 2
 
-static u16 default_mode = MODE_PING;
+static u16 default_mode = MODE_PCM;
 
 int main(void)
 {
@@ -27,6 +29,9 @@ int main(void)
         case MODE_RATE_TEST:
             SYS_setVIntCallback(vsync);
             reader_read();
+            break;
+        case MODE_PCM:
+            pcm_stream();
             break;
     }
 }

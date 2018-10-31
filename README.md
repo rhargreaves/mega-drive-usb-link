@@ -33,6 +33,10 @@ Linux:
 make test
 ```
 
+## Results
+
+The maximum speed reached using the Everdrive has been found to be roughly 50,000 bytes per second.
+
 ## References
 
 * [extended_ssf-v2](http://krikzz.com/pub/support/mega-everdrive/x3x5x7/dev/extended_ssf-v2.txt)

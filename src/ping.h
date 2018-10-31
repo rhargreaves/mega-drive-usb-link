@@ -1,0 +1,1 @@
+void ping_ping(void);

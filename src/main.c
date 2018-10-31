@@ -1,6 +1,7 @@
 #include <genesis.h>
 #include <reader.h>
 #include <ssf.h>
+#include <ping.h>
 
 static void vsync(void);
 static void printRate(u16 byteCount);
@@ -9,12 +10,25 @@ static void printCount(u16 count);
 static u16 frame = 0;
 static u16 framesPerSecond;
 
+#define MODE_PING 0
+#define MODE_RATE_TEST 1
+
+static u16 default_mode = MODE_PING;
+
 int main(void)
 {
     framesPerSecond = SYS_isNTSC() ? 60 : 50;
     ssf_init();
-    SYS_setVIntCallback(vsync);
-    reader_read();
+    switch(default_mode) 
+    {
+        case MODE_PING:
+            ping_ping();
+            break;
+        case MODE_RATE_TEST:
+            SYS_setVIntCallback(vsync);
+            reader_read();
+            break;
+    }
 }
 
 static void vsync(void) 

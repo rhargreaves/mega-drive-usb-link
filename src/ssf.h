@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   ssf.h
  * Author: krik
  *
@@ -6,7 +6,8 @@
  */
 
 #ifndef SSF_H
-#define	SSF_H
+#define SSF_H
+#include "types.h"
 
 void ssf_led_off();
 void ssf_led_on();
@@ -34,5 +35,4 @@ u32 ssf_div32(u32 arg1, u32 arg2);
 u16 ssf_mul16(u16 arg1, u16 arg2);
 u16 ssf_div16(u16 arg1, u16 arg2);
 
-#endif	/* SSF_H */
-
+#endif /* SSF_H */

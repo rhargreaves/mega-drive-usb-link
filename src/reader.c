@@ -1,15 +1,14 @@
-#include <reader.h>
 #include <genesis.h>
+#include <reader.h>
 #include <ssf.h>
 
 u16 _count = 0;
 
-void reader_read(void) 
+void reader_read(void)
 {
     u8 data;
-    for(;;) {
-        if(ssf_usb_rd_ready())
-        {
+    for (;;) {
+        if (ssf_usb_rd_ready()) {
             data = ssf_usb_read();
             _count++;
         }

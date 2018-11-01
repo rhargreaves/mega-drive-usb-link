@@ -1,4 +1,5 @@
 # Sega Mega Drive USB Link [![CircleCI](https://circleci.com/gh/rhargreaves/mega-drive-usb-link.svg?style=svg)](https://circleci.com/gh/rhargreaves/mega-drive-usb-link)
+
 Fun and profit sending bits over USB to the Mega EverDrive X7 cart
 
 ## Getting Started
@@ -20,17 +21,17 @@ static u16 default_mode = MODE_PING;
 `PCM` allows you to stream PCM audio through the USB serial interface direct to the DAC of the YM2612 FM chip. For example:
 
 ```sh
-$ ffmpeg -re -y -i input.mp3 -ar 26000 -acodec pcm_u8 -f u8 -ac 1 - > /dev/cu.usbserial-A105J2JO
+$ ffmpeg -y -i input.mp3 -ar 29700 -acodec pcm_u8 -f u8 -ac 1 - > /dev/cu.usbserial-A105J2JO
 ```
 
-The `-re` argument ensures that the PCM audio is sent to the Mega Drive at playback rate (there's no software buffering or rate control). A sample rate of 26000 Hz seems to work fine with the program as-is.
+A sample rate of 29,700 Hz seems to work fine with the program as-is.
 
 ### Results
 
 The following metrics were calculated using the tooling described above:
 
-* Maximum throughput/rate = **50,000 bytes/sec**.
-* Mean latency = **~2.1 ms**.
+- Maximum throughput/rate = **50,000 bytes/sec**.
+- Mean latency = **~2.1 ms**.
 
 The cart seems to have a 128 byte FIFO buffer which blocks if it becomes full.
 
@@ -64,7 +65,6 @@ Linux:
 make test
 ```
 
-
 ## References
 
-* [extended_ssf-v2](http://krikzz.com/pub/support/mega-everdrive/x3x5x7/dev/extended_ssf-v2.txt)
+- [extended_ssf-v2](http://krikzz.com/pub/support/mega-everdrive/x3x5x7/dev/extended_ssf-v2.txt)

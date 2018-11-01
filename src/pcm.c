@@ -32,7 +32,5 @@ static void pcm_writeDAC(u8 sample)
     while (*pb < 0)
         ;
     pb[0] = 0x2A;
-    while (*pb < 0)
-        ;
     pb[1] = sample;
 }

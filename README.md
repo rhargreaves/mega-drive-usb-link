@@ -32,6 +32,8 @@ The following metrics were calculated using the tooling described above:
 * Maximum throughput/rate = **50,000 bytes/sec**.
 * Mean latency = **~2.1 ms**.
 
+The cart seems to have a 128 byte FIFO buffer which blocks if it becomes full.
+
 ## Compiling ROM
 
 Docker:

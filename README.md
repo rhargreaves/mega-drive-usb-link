@@ -3,7 +3,7 @@ Fun and profit sending bits over USB to the Mega EverDrive X7 cart
 
 ## Getting Started
 
-This program has many options as defined by the code in [src/main.c](src/main.c). The activate "mode" can be changed by modifying the source and re-compiling the ROM:
+This program has three modes as defined by the code in [src/main.c](src/main.c). The mode can be changed by modifying the source and re-compiling the ROM:
 
 ```c
 #define MODE_PING 0

@@ -2,6 +2,7 @@ GENDEV?=/opt/gendev
 GCC_VER?=6.3.0
 MAKE?=make
 LIB?=lib
+ASSEMBLY_OUT?=out
 GENGCC_BIN=$(GENDEV)/bin
 GENBIN=$(GENDEV)/bin
 CC = $(GENGCC_BIN)/m68k-elf-gcc
@@ -22,7 +23,7 @@ NM = nm
 
 OPTION = -std=c11 -fno-builtin
 INCS = -I. -I$(GENDEV)/sgdk/inc -I$(GENDEV)/m86k-elf/include -I$(GENDEV)/sgdk/res -Isrc -Ires
-CCFLAGS = $(OPTION) -m68000 -Wall -O3 -c -fomit-frame-pointer
+CCFLAGS = $(OPTION) -m68000 -Wall -O3 -fomit-frame-pointer
 Z80FLAGS = -vb2
 ASFLAGS = -m68000 --register-prefix-optional
 LIBS =  -L$(GENDEV)/m68k-elf/lib -L$(GENDEV)/lib/gcc/m68k-elf/$(GCC_VER)/* -L$(GENDEV)/sgdk/lib -lmd -lnosys
@@ -72,8 +73,11 @@ bin/%.bin: %.elf
 %.c: %.o80
 	$(BINTOS) $<
 
-%.o: %.c
-	$(CC) $(CCFLAGS) $(INCS) -c $< -o $@
+$(ASSEMBLY_OUT):
+	mkdir -p $(ASSEMBLY_OUT)
+
+%.o: %.c $(ASSEMBLY_OUT)
+	$(CC) $(CCFLAGS) $(INCS) -c -Wa,-aln=$(ASSEMBLY_OUT)/$(notdir $(@:.o=.s)) $< -o $@
 
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@

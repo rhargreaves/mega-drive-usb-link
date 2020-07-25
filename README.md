@@ -1,6 +1,6 @@
 # Sega Mega Drive USB Link [![CircleCI](https://circleci.com/gh/rhargreaves/mega-drive-usb-link.svg?style=svg)](https://circleci.com/gh/rhargreaves/mega-drive-usb-link)
 
-Fun and profit sending bits over USB to the Mega EverDrive X7 cart
+Fun and profit sending bits over USB to the Mega EverDrive X7 and PRO cart
 
 ## Getting Started
 
@@ -10,15 +10,18 @@ This program has three modes as defined by the code in [src/main.c](src/main.c).
 #define MODE_PING 0
 #define MODE_RATE_TEST 1
 #define MODE_PCM 2
+#define MODE_PRO 3
 
-static u16 default_mode = MODE_PING;
+static u16 default_mode = MODE_PRO;
 ```
 
-`PING` is a method of calculating round-trip latency from a PC to a Mega Drive by having the PC send a character to the Mega Drive, which upon receipt will immediately respond with a character back. The [many_ping](many_ping) script can be used to find the average time to send & receive ping requests & responses.
+`PRO` is for testing the Mega EverDrive PRO's USB functionality.
 
-`RATE_TEST` is a method of calculating throughput in bytes per second, by simply counting bytes received over the USB. Piping `/dev/zero` into the USB serial device works well!
+`PING` (X7 only) is a method of calculating round-trip latency from a PC to a Mega Drive by having the PC send a character to the Mega Drive, which upon receipt will immediately respond with a character back. The [many_ping](many_ping) script can be used to find the average time to send & receive ping requests & responses.
 
-`PCM` allows you to stream PCM audio through the USB serial interface direct to the DAC of the YM2612 FM chip. For example:
+`RATE_TEST` (X7 only) is a method of calculating throughput in bytes per second, by simply counting bytes received over the USB. Piping `/dev/zero` into the USB serial device works well!
+
+`PCM` (X7 only) allows you to stream PCM audio through the USB serial interface direct to the DAC of the YM2612 FM chip. For example:
 
 ```sh
 ffmpeg -y -i input.mp3 -ar 32000 -acodec pcm_u8 -f u8 -ac 1 - > /dev/cu.usbserial-A105J2JO

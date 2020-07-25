@@ -2,7 +2,7 @@
 #include <reader.h>
 #include <ssf.h>
 
-u16 _count = 0;
+static u16 _count = 0;
 
 void reader_read(void)
 {

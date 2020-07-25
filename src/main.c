@@ -14,8 +14,9 @@ static u16 framesPerSecond;
 #define MODE_PING 0
 #define MODE_RATE_TEST 1
 #define MODE_PCM 2
+#define MODE_PRO 3
 
-static u16 default_mode = MODE_PCM;
+static u16 default_mode = MODE_PRO;
 
 int main(void)
 {
@@ -31,6 +32,9 @@ int main(void)
         break;
     case MODE_PCM:
         pcm_stream();
+        break;
+    case MODE_PRO:
+        pro_read();
         break;
     }
 }
